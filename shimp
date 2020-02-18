@@ -15,7 +15,6 @@ clear_line() { printf '\e[2K'; }
 # $1: line
 # $2: column
 mov_to() { printf '\e[%sH' "${1};${2}"; }
-top_left() { mov_to 0 0; }
 # Move cursor down N lines
 # $1: nb_line
 mov_down() { printf '\e[%sB' "$1"; }
@@ -56,7 +55,7 @@ show_current_slide() {
 	current_slide=$(slide_n $((I + 1)))
 
 	clear_screen_inplace
-	top_left
+	mov_to 0 0
 
 	if [ "$I" -eq "$TOTAL" ]; then
 		mov_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
