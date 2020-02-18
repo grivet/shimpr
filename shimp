@@ -45,6 +45,7 @@ quit() {
 	trap - EXIT
 	[ "$old_tty_cfg" ] && stty "$old_tty_cfg"
 	clear_screen
+	mov_to $LINES 0
 	show_cursor
 	printf '\r'
 	exit 0
