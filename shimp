@@ -50,6 +50,7 @@ quit() {
 	printf '\r'
 	exit 0
 }
+trap 'quit' INT QUIT TERM EXIT
 
 show_current_slide() {
 	current_slide=$(slide_n $((I + 1)))
@@ -69,19 +70,15 @@ show_current_slide() {
 	mov_to 0 0; mov_down "$LINES"
 	printf '%d/%d' "$((I+1))" "$TOTAL"
 }
-
-get_screen_geometry
-
-trap 'quit' INT QUIT TERM EXIT
 trap 'get_screen_geometry; show_current_slide' WINCH
-
-hide_cursor
 
 # Read one char, +icanon should be restored on exit
 old_tty_cfg="$(stty -g)"
 stty -icanon
 read_char() { dd ibs=1 count=1 2>/dev/null; }
 
+get_screen_geometry
+hide_cursor
 while true; do
 	# clamp I
 	[ "$I" -lt 0 ] && I=0
