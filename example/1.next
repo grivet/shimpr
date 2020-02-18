@@ -1,0 +1,39 @@
+
+
+
+        Next slide
+        ==========
+
+
+            + ASCII art can be used.
+            + No text from the slide is evaluated.
+            + "Quoted" or \e\s\c\a\p\e\d strings are safe.
+
+
+        Press <k> or <p> for the previous slide.
+
+
+                          +-------------+
+                          |             |
+                          | Exponential |
+                          |             |
+                          +-------------+
+                                 |
+                          lambda |
+                                 v
++-------------+           +-------------+           +-------------+
+|             |   tau     |             |   lambda  |             |
+|  Lognormal  |---------->|    Gamma    |<----------| Poisson     |
+|             |           |             |---+       |             |
++-------------+           +-------------+   |       +-------------+
+      |                         ^ ^         | beta
+      |                   tau   | |         | 
+      | tau                     | +---------+
+      |                   +-------------+ 
+      +------------------>|             |
+                          |     Normal  |
+                          |             |----+
+                          +-------------+    | 
+                                     ^       | mu
+                                     |       |
+                                     +-------+
