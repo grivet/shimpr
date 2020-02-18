@@ -33,8 +33,6 @@ get_screen_geometry() {
 	COLUMNS=$(tput cols)
 }
 
-old_tty_cfg="$(stty -g)"
-
 slide_n() { echo "$SLIDES" | sed -n "${1}"p; }
 
 # Cat file clamped to geometry
@@ -45,7 +43,7 @@ clamped_cat() { cut -c-"$3" "$1" | head -$(($2 - 1)); }
 
 quit() {
 	trap - EXIT
-	stty "$old_tty_cfg"
+	[ "$old_tty_cfg" ] && stty "$old_tty_cfg"
 	clear_screen
 	show_cursor
 	printf '\r'
@@ -79,6 +77,7 @@ trap 'get_screen_geometry; show_current_slide' WINCH
 hide_cursor
 
 # Read one char, +icanon should be restored on exit
+old_tty_cfg="$(stty -g)"
 stty -icanon
 read_char() { dd ibs=1 count=1 2>/dev/null; }
 
