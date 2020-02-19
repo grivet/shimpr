@@ -46,7 +46,7 @@ quit() {
 	trap - EXIT
 	[ "$old_tty_cfg" ] && stty "$old_tty_cfg"
 	clear_screen
-	mov_to $LINES 0
+	mov_to "$LINES" 0
 	show_cursor
 	printf '\r'
 	exit 0
@@ -68,7 +68,7 @@ show_current_slide() {
 	fi
 
 	# Write slide number at bottom left.
-	mov_to $LINES 0
+	mov_to "$LINES" 0
 	printf '%d/%d' "$((I+1))" "$TOTAL"
 }
 trap 'get_screen_geometry; show_current_slide' WINCH
