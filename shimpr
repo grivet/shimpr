@@ -20,10 +20,12 @@ mov_to() { printf '\e[%sH' "${1};${2}"; }
 mov_down() { printf '\e[%sB' "$1"; }
 
 clear_screen_inplace() {
+	x=$LINES
 	mov_to 0 0
-	for i in $(seq 1 $LINES); do
+	while [ $x -gt 0 ]; do
 		clear_line
 		mov_down 1
+		x=$((x - 1))
 	done
 }
 
