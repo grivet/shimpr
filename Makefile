@@ -9,4 +9,4 @@ uninstall:
 	rm -f $(TARGET)
 
 check:
-	shellcheck -s sh $(SCRIPT)
+	@shellcheck -s sh $(SCRIPT)
