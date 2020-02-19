@@ -1,4 +1,4 @@
-SCRIPT := shimp
+SCRIPT := shimpr
 PREFIX ?= /usr
 TARGET := $(DESTDIR)$(PREFIX)/bin/$(SCRIPT)
 

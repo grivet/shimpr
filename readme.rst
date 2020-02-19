@@ -1,5 +1,5 @@
-SHIMP
-=====
+SHIMPR
+======
 
 
 Text presentation tool.
