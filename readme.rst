@@ -27,3 +27,8 @@ to the directory, or from within.
    - ``G`` for the last slide.
 
    - ``q`` to quit immediately.
+
+Example
+-------
+
+``./shimpr example``
