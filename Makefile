@@ -1,6 +1,6 @@
 SCRIPT := shimpr
-PREFIX ?= /usr
-TARGET := $(DESTDIR)$(PREFIX)/bin/$(SCRIPT)
+PREFIX ?= /usr/bin
+TARGET := $(DESTDIR)$(PREFIX)/$(SCRIPT)
 
 install: $(SCRIPT)
 	install -Dm755 $< $(TARGET)
