@@ -20,18 +20,18 @@ mov_to() { printf '\e[%sH' "${1};${2}"; }
 mov_down() { printf '\e[%sB' "$1"; }
 
 clear_screen_inplace() {
-	x=$LINES
-	mov_to 0 0
-	while [ $x -gt 0 ]; do
-		clear_line
-		mov_down 1
-		x=$((x - 1))
-	done
+    x=$LINES
+    mov_to 0 0
+    while [ $x -gt 0 ]; do
+        clear_line
+        mov_down 1
+        x=$((x - 1))
+    done
 }
 
 get_screen_geometry() {
-	LINES=$(tput lines)
-	COLUMNS=$(tput cols)
+    LINES=$(tput lines)
+    COLUMNS=$(tput cols)
 }
 
 slide_n() { echo "$SLIDES" | sed -n "${1}"p; }
@@ -43,33 +43,33 @@ slide_n() { echo "$SLIDES" | sed -n "${1}"p; }
 clamped_cat() { cut -c-"$3" "$1" | head -$(($2 - 1)); }
 
 quit() {
-	trap - EXIT
-	[ "$old_tty_cfg" ] && stty "$old_tty_cfg"
-	clear_screen
-	mov_to "$LINES" 0
-	show_cursor
-	printf '\r'
-	exit 0
+    trap - EXIT
+    [ "$old_tty_cfg" ] && stty "$old_tty_cfg"
+    clear_screen
+    mov_to "$LINES" 0
+    show_cursor
+    printf '\r'
+    exit 0
 }
 trap 'quit' INT QUIT TERM EXIT
 
 show_current_slide() {
-	current_slide=$(slide_n $((I + 1)))
+    current_slide=$(slide_n $((I + 1)))
 
-	clear_screen_inplace
-	mov_to 0 0
+    clear_screen_inplace
+    mov_to 0 0
 
-	if [ "$I" -eq "$TOTAL" ]; then
-		mov_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
-		printf 'END.'
-		return
-	else
-		clamped_cat "$current_slide" "$LINES" "$COLUMNS"
-	fi
+    if [ "$I" -eq "$TOTAL" ]; then
+        mov_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
+        printf 'END.'
+        return
+    else
+        clamped_cat "$current_slide" "$LINES" "$COLUMNS"
+    fi
 
-	# Write slide number at bottom left.
-	mov_to "$LINES" 0
-	printf '%d/%d' "$((I+1))" "$TOTAL"
+    # Write slide number at bottom left.
+    mov_to "$LINES" 0
+    printf '%d/%d' "$((I+1))" "$TOTAL"
 }
 trap 'get_screen_geometry; show_current_slide' WINCH
 
@@ -81,31 +81,31 @@ read_char() { dd ibs=1 count=1 2>/dev/null; }
 get_screen_geometry
 hide_cursor
 while true; do
-	# clamp I
-	[ "$I" -lt 0 ] && I=0
-	[ "$I" -gt "$TOTAL" ] && I=$TOTAL
+    # clamp I
+    [ "$I" -lt 0 ] && I=0
+    [ "$I" -gt "$TOTAL" ] && I=$TOTAL
 
-	show_current_slide
+    show_current_slide
 
-	# Navigation
-	case "$(read_char)" in
-	"j"|"n")
-		[ "$I" -eq "$TOTAL" ] && quit
-		I=$((I + 1))
-		;;
-	"k"|"p"|"N")
-		I=$((I - 1))
-		;;
-	"g"|"0")
-		I=0
-		;;
-	"G")
-		I=$((TOTAL - 1))
-		;;
-	"q")
-		quit
-		;;
-	*)
-		;;
-	esac
+    # Navigation
+    case "$(read_char)" in
+    "j"|"n")
+        [ "$I" -eq "$TOTAL" ] && quit
+        I=$((I + 1))
+        ;;
+    "k"|"p"|"N")
+        I=$((I - 1))
+        ;;
+    "g"|"0")
+        I=0
+        ;;
+    "G")
+        I=$((TOTAL - 1))
+        ;;
+    "q")
+        quit
+        ;;
+    *)
+        ;;
+    esac
 done
