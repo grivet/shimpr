@@ -1,5 +1,29 @@
 #!/usr/bin/env sh
 
+# opts
+
+usage () {
+(
+    name=$(basename "$0")
+    len=$(printf "%s" "$name" |wc -m)
+    ___O=$(printf "%*s" "$len" ' ')
+
+    cat <<EOF
+Usage: $name [-h|--help] [<DIR>=./]
+
+       $___O DIR: directory containing the slides.
+       $___O -h | --help: show this help.
+EOF
+)
+    exit 0;
+}
+
+for arg ; do
+case "$arg" in
+--help|-h) usage; shift ;;
+esac
+done
+
 WORK_DIR="${1:-./}"
 SLIDES="$(LANG=C ls -1q "$WORK_DIR"*)"
 TOTAL=$(echo "$SLIDES" |wc -l)
