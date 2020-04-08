@@ -9,6 +9,9 @@
             + No text from the slide is evaluated.
             + "Quoted" or \e\s\c\a\p\e\d strings are safe.
 
+            + <g> or <0> to jump to the first slide.
+            + <G> to jump to the last slide.
+
 
         Press <k> or <p> for the previous slide.
 
