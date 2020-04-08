@@ -9,10 +9,10 @@ usage () {
     ___O=$(printf "%*s" "$len" ' ')
 
     cat <<EOF
-Usage: $name [-h|--help] [<DIR>=./]
+Usage: $name [-h|--help] [DIR]
 
        $___O DIR: directory containing the slides.
-       $___O -h | --help: show this help.
+       $___O -h|--help: show this help.
 EOF
 )
     exit 0;
