@@ -95,7 +95,6 @@ show_current_slide() {
     mov_to "$LINES" 0
     printf '%d/%d' "$((I+1))" "$TOTAL"
 }
-trap 'get_screen_geometry; show_current_slide' WINCH
 
 # Read one char, +icanon should be restored on exit
 old_tty_cfg="$(stty -g)"
