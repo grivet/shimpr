@@ -102,8 +102,6 @@ old_tty_cfg="$(stty -g)"
 stty -icanon
 read_char() { dd ibs=1 count=1 2>/dev/null; }
 
-cd "$WORK_DIR" || exit
-
 get_screen_geometry
 hide_cursor
 while true; do
