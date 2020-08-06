@@ -1,8 +1,8 @@
 SCRIPT := shimpr
 
 -include .config.mk
-PREFIX ?= /usr/bin
-TARGET := $(DESTDIR)$(PREFIX)/$(SCRIPT)
+DESTDIR ?= /usr/bin
+TARGET := $(DESTDIR)/$(SCRIPT)
 
 install: $(SCRIPT) .config.mk
 	install -Dm755 $< $(TARGET)
@@ -12,8 +12,7 @@ uninstall:
 
 .PHONY: .config.mk
 .config.mk:
-	@echo "PREFIX=$(PREFIX)" > $@
-	@echo "DESTDIR=$(DESTDIR)" >> $@
+	@echo "DESTDIR=$(DESTDIR)" > $@
 
 check:
 	@shellcheck -s sh $(SCRIPT)
