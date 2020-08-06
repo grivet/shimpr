@@ -10,6 +10,9 @@ install: $(SCRIPT) .config.mk
 uninstall:
 	rm -f $(TARGET)
 
+clean:
+	rm .config.mk
+
 .PHONY: .config.mk
 .config.mk:
 	@echo "DESTDIR=$(DESTDIR)" > $@
