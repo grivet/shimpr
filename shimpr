@@ -25,7 +25,7 @@ esac
 done
 
 WORK_DIR="${1:-./}"
-SLIDES="$(LANG=C ls -1q "$WORK_DIR"*)"
+SLIDES="$(LANG=C find "$WORK_DIR" -type f | sort)"
 TOTAL=$(echo "$SLIDES" |wc -l)
 I=0
 
