@@ -20,7 +20,7 @@ EOF
 
 for arg ; do
 case "$arg" in
---help|-h) usage; shift ;;
+--help|-h) usage ;;
 esac
 done
 
