@@ -6,7 +6,7 @@
 
 
             + The slide formatting is kept as-is.
-            + Long lines are cramped for the screen.
+            + Long lines are clamped to the console geometry.
 
 
 
