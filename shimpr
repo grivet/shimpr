@@ -38,17 +38,17 @@ clear_line() { printf '\e[2K'; }
 # Move cursor to given coordinates
 # $1: line
 # $2: column
-mov_to() { printf '\e[%sH' "${1};${2}"; }
+move_to() { printf '\e[%sH' "${1};${2}"; }
 # Move cursor down N lines
 # $1: nb_line
-mov_down() { printf '\e[%sB' "$1"; }
+move_down() { printf '\e[%sB' "$1"; }
 
 clear_screen_inplace() {
     x=$LINES
-    mov_to 0 0
+    move_to 0 0
     while [ $x -gt 0 ]; do
         clear_line
-        mov_down 1
+        move_down 1
         x=$((x - 1))
     done
 }
@@ -70,7 +70,7 @@ quit() {
     trap - EXIT
     [ "$old_tty_cfg" ] && stty "$old_tty_cfg"
     clear_screen
-    mov_to "$LINES" 0
+    move_to "$LINES" 0
     show_cursor
     printf '\r'
     exit 0
@@ -81,10 +81,10 @@ show_current_slide() {
     current_slide=$(slide_n $((I + 1)))
 
     clear_screen_inplace
-    mov_to 0 0
+    move_to 0 0
 
     if [ "$I" -eq "$TOTAL" ]; then
-        mov_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
+        move_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
         printf 'END.'
         return
     else
@@ -92,7 +92,7 @@ show_current_slide() {
     fi
 
     # Write slide number at bottom left.
-    mov_to "$LINES" 0
+    move_to "$LINES" 0
     printf '%d/%d' "$((I+1))" "$TOTAL"
 }
 
