@@ -5,7 +5,7 @@ DESTDIR ?= /usr/bin
 TARGET := $(DESTDIR)/$(SCRIPT)
 
 install: $(SCRIPT) .config.mk
-	install -Dm755 $< $(TARGET)
+	tools/install.sh -Dm755 $< $(TARGET)
 
 uninstall:
 	rm -f $(TARGET)
