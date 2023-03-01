@@ -78,8 +78,6 @@ quit() {
 trap 'quit' INT QUIT TERM EXIT
 
 show_current_slide() {
-    current_slide=$(slide_n $((I + 1)))
-
     clear_screen_inplace
     move_to 0 0
 
@@ -87,9 +85,11 @@ show_current_slide() {
         move_to $((LINES / 2 - 1)) $((COLUMNS / 2 - 2))
         printf 'END.'
         return
-    else
-        clamped_cat "$current_slide" "$LINES" "$COLUMNS"
     fi
+
+    current_slide=$(slide_n $((I + 1)))
+
+    clamped_cat "$current_slide" "$LINES" "$COLUMNS"
 
     # Write slide number at bottom left.
     move_to "$LINES" 0
