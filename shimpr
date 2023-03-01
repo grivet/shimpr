@@ -3,19 +3,13 @@
 # opts
 
 usage () {
-(
-    name=$(basename "$0")
-    len=$(printf "%s" "$name" |wc -m)
-    ___O=$(printf "%*s" "$len" ' ')
-
     cat <<EOF
-Usage: $name [-h|--help] [DIR]
+Usage: $0 [-h|--help] [DIR]
 
-       $___O DIR: directory containing the slides.
-       $___O -h|--help: show this help.
+      DIR: directory containing the slides.
+-h|--help: show this help.
 EOF
-)
-    exit 0;
+exit 0
 }
 
 for arg ; do
