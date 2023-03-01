@@ -46,7 +46,7 @@ move_down() { printf '\e[%sB' "$1"; }
 clear_screen_inplace() {
     x=$LINES
     move_to 0 0
-    while [ $x -gt 0 ]; do
+    while [ "$x" -gt 0 ]; do
         clear_line
         move_down 1
         x=$((x - 1))
