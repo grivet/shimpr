@@ -2,7 +2,7 @@ SHIMPR
 ======
 
 
-Text presentation tool.
+Minimalist text presentation tool for the POSIX console.
 
 Features
 --------
